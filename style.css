@@ -1,0 +1,293 @@
+:root {
+	--color-primary: #00bfa6;
+	--color-secondary: #3f3d56;
+	--color-background: #d2f9f4;
+
+	--mobile: (max-width: 400px);
+}
+
+:root:has(#theme:checked) {
+	--color-primary: #3f3d56;
+	--color-secondary: #00bfa6;
+	--color-background: linear-gradient(#08052e, #000);
+}
+
+/* fallback for no :has() support */
+.dark-theme {
+	--color-primary: #3f3d56;
+	--color-secondary: #00bfa6;
+	--color-background: linear-gradient(#08052e, #000);
+}
+
+html {
+	font-size: min(
+		1.282051282051282vh,
+		0.6944444444444444vw
+	); /* equal to 10px for 1440w/780h */
+}
+
+body {
+	margin: 0;
+	background: var(--color-background);
+}
+
+/* Theme Checkbox */
+
+input#theme {
+	position: absolute;
+	left: calc(
+		118.3rem
+	); /* half of its width to fit design but i don't know why */
+	top: 15.7rem;
+
+	margin: 0;
+	appearance: none;
+	-webkit-tap-highlight-color: transparent;
+
+	font-size: 5.5rem;
+	width: 1.8em;
+	height: 1.8em;
+	border-radius: 50%;
+	background-color: var(--color-secondary);
+
+	overflow: hidden;
+}
+
+input#theme:hover {
+	cursor: pointer;
+}
+
+input#theme::before,
+input#theme::after {
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+
+	font-family: "Font Awesome 5 Free";
+	color: var(--color-primary);
+
+	display: grid;
+	place-items: center;
+
+	transition: transform 200ms;
+}
+
+input#theme::before {
+	content: "\f186";
+	margin-left: 0.06em;
+}
+
+input#theme:checked::before {
+	transform: translateY(100%);
+}
+
+input#theme::after {
+	content: "\f185";
+	font-weight: bold;
+
+	transform: translateY(-100%);
+}
+
+input#theme:checked::after {
+	transform: translateY(0);
+}
+
+/* End Theme Checkbox */
+
+/* Logo */
+
+svg.logo {
+	width: unset;
+	height: 5rem;
+	position: absolute;
+	left: 4.4rem;
+	top: 3.5rem;
+}
+
+svg.logo path:nth-of-type(1),
+svg.logo path:nth-of-type(2) {
+	fill: var(--color-secondary);
+}
+
+/* End Logo */
+
+/* Hero Section */
+
+section.hero {
+	height: 100vh;
+	box-sizing: border-box;
+	padding-top: 11.9rem;
+
+	display: grid;
+	grid-template-columns: repeat(2, auto);
+	grid-template-rows: repeat(3, auto);
+	gap: 0 9.8rem;
+	justify-content: center;
+	align-content: flex-start;
+	grid-template-areas:
+		"hdg img"
+		"cta img"
+		". link ";
+}
+
+h1 {
+	grid-area: hdg;
+	margin: 0;
+	font-family: "Righteous", cursive;
+	font-size: 9.6rem;
+	color: var(--color-secondary);
+	align-self: flex-end;
+	width: 44rem;
+}
+
+/* CTA */
+
+button {
+	grid-area: cta;
+	margin-top: 5.3rem;
+
+	font-size: 4rem;
+	padding: 0.4em 0.75em;
+	border: solid 3px var(--color-secondary); /* min(max(2px, 0.3rem), 5px) */
+	border-radius: 0.25em;
+	width: fit-content;
+	height: fit-content;
+
+	font-family: "Righteous", cursive;
+	color: var(--color-secondary);
+	background-color: var(--color-background);
+
+	position: relative;
+}
+
+button:hover {
+	cursor: pointer;
+}
+
+button:active {
+	transform: scale(0.98) translateY(2px);
+}
+
+button::after {
+	position: absolute;
+	inset: -3px;
+	box-sizing: border-box;
+
+	border: inherit;
+	border-radius: inherit;
+	padding: inherit;
+
+	content: "Make the difference";
+	color: var(--color-primary);
+	background-color: var(--color-secondary);
+
+	opacity: 0;
+	transition: opacity 200ms;
+}
+
+button:hover::after {
+	opacity: 1;
+}
+
+/* End CTA */
+
+img {
+	grid-area: img;
+	width: 59.7rem;
+	height: 58.1rem;
+	align-self: center;
+}
+
+a {
+	grid-area: link;
+	font-size: 1.4rem;
+	font-family: "Righteous", cursive;
+	color: var(--color-secondary);
+	justify-self: flex-end;
+	margin-right: 1.9rem;
+	margin-top: -0.7rem;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+/* End Hero Section */
+
+/* Mobile */
+
+@media screen and (max-width: 500px) {
+	:root {
+		--size: min(0.75vh, 1.3333333333333333vw);
+	}
+
+	html {
+		font-size: min(
+			1.5625vh,
+			2.7777777777777777vw
+		); /* equal to 10px for 360w/640h */
+	}
+
+	input#theme {
+		top: 11.6rem;
+		left: 23.9rem;
+		font-size: 3rem;
+	}
+
+	svg.logo {
+		width: 9.9rem;
+		height: 3rem;
+		top: 1.6rem;
+		left: 2rem;
+	}
+
+	section.hero {
+		padding-top: 10.7rem;
+
+		grid-template-columns: auto;
+		grid-template-rows: repeat(4, auto);
+		gap: 0;
+		grid-template-areas:
+			"img"
+			"link"
+			"hdg"
+			"cta";
+		justify-items: center;
+	}
+
+	img {
+		width: 22rem;
+		height: 21.5rem;
+	}
+
+	a {
+		font-size: 0.7rem;
+		margin-top: -0.2rem;
+		margin-right: 4.7rem;
+		text-decoration: underline;
+	}
+
+	h1 {
+		text-align: center;
+		font-size: 4.8rem;
+		width: 29.5rem;
+		margin-top: 3.1rem;
+	}
+
+	button {
+		font-size: 2.4rem;
+		margin-top: unset;
+		margin-top: 5rem;
+		-webkit-tap-highlight-color: transparent;
+		width: 100%;
+		padding-top: 0.6em;
+		padding-bottom: 0.6em;
+	}
+
+	button::after {
+		opacity: 1;
+	}
+}
+
+/* End Mobile */
