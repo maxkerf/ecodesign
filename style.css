@@ -4,6 +4,8 @@
 	--color-background: #d2f9f4;
 
 	--mobile: (max-width: 400px);
+
+	--dur-theme-btn-switch: 500ms;
 }
 
 :root:has(#theme:checked) {
@@ -69,7 +71,7 @@ input#theme::after {
 	display: grid;
 	place-items: center;
 
-	transition: transform 200ms;
+	transition: transform var(--dur-theme-btn-switch);
 }
 
 input#theme::before {
@@ -114,7 +116,7 @@ svg.logo path:nth-of-type(2) {
 /* Hero Section */
 
 section.hero {
-	height: 100vh;
+	height: 100dvh;
 	box-sizing: border-box;
 	padding-top: 11.9rem;
 
