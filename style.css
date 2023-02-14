@@ -22,6 +22,7 @@
 }
 
 html {
+	height: 100%;
 	font-size: min(
 		1.282051282051282vh,
 		0.6944444444444444vw
@@ -116,7 +117,7 @@ svg.logo path:nth-of-type(2) {
 /* Hero Section */
 
 section.hero {
-	height: 100dvh;
+	height: 100%;
 	box-sizing: border-box;
 	padding-top: 11.9rem;
 
